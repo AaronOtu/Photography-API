@@ -1,13 +1,13 @@
-const express = require('express');
-const { GetAllUsers, RegisterUsers } = require('../controllers/users');
+const express = require("express");
+const {
+  GetAllUsers,
+  RegisterUsers,
+  LoginUsers,
+} = require("../controllers/users");
 const router = express.Router();
 
+router.route("/").get(GetAllUsers);
+router.route("/register").post(RegisterUsers);
+router.route("/login").post(LoginUsers);
 
-
-
-router.route('/').get(GetAllUsers).post(RegisterUsers)
-
-
-module.exports = router
-
-
+module.exports = router;

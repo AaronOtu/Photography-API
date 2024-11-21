@@ -25,7 +25,7 @@ UserSchema.pre("save", function (next) {
 });
 
 UserSchema.methods.comparePassword = function (plainPassword) {
-  return bycrypt.compare(plainPassword, this.password);
+  return bcrypt.compare(plainPassword, this.password);
 };
 
 UserSchema.methods.generateToken = function(){

@@ -2,8 +2,8 @@ const express = require("express");
 const connectDB = require("./Database/db");
 const users = require("./routes/users");
 
-
 const app = express();
+const port = 4080
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -11,22 +11,17 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.status(200).send("Welcome to my application!");
 });
-app.get("/books", (req, res) => {
-  res.status(200).send("welcome to users page!");
-});
 
+app.use("/users", users);
 
-app.use("/users", users)
 
 const start = async () => {
   try {
     await connectDB();
-    app.listen(4080, function () {
-      console.log("server is listening of port 4080");
-    }
-    )
-  }
-  catch (error) {
+    app.listen(port, function () {
+      console.log(`server is listening of port ${port}`);
+    });
+  } catch (error) {
     console.log(error.message);
   }
 };
